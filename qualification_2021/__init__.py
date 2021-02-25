@@ -1,1 +1,2 @@
-from main import Example2021
+from main import Qualification2021
+from .strategy import BaseStrategy, FirstStreetStrategy, OneSecondStrategy, TenSecondsStrategy, MostUsedStreetStrategy, UsedStreetsStrategy, StreetRelationStrategy, ShortStreetRelationStrategy, StreetCarLengthRelationStrategy, StreetRelationReversedStrategy, StreetCarLengthRelationReversedStrategy

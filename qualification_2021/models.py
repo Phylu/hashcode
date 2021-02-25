@@ -9,35 +9,41 @@ class InputFile:
             inputFile (string): filename of the input file including the path
         """
         input = read(inputFile)
-        firstLineArray = input[0].split(" ")
-        self.numberOfPizzas = int(firstLineArray[0])
-        self.teamList = firstLineArray[1:]
-        self.pizzaList = input[1:]
+        firstLine = input[0].split(" ")
+        self.duration = int(firstLine[0])
+        self.intersectionCount = int(firstLine[1])
+        self.streetCount = int(firstLine[2])
+        self.carCount = int(firstLine[3])
+        self.pointsPerCar = int(firstLine[4])
 
-    def teamsByNumber(self,numberOfMembers):
-        """Get the number of teams for a certain number of members
+        self.streets = map(Street, input[1:self.streetCount + 1])
+        self.cars = map(Car, input[self.streetCount + 1:])
 
-        Args:
-            numberOfMembers (int): how many members are in the team
+    def __str__(self):
+        return "Duration: {}\nIntersections: {}\nStreets: {}\nCars: {}\nPoints: {}\n".format(self.duration, self.intersectionCount, self.streetCount, self.carCount, self.pointsPerCar)
 
-        Returns:
-            int: how many teams there are of this size
-        """
-        if numberOfMembers not in [2, 3, 4]:
-            print("Team size not allowed")
-            sys.exit()
-        return int(self.teamList[numberOfMembers - 2])
+class Street:
+    def __init__(self, data):
+        data = data.split(" ")
+        self.start = int(data[0])
+        self.end = int(data[1])
+        self.name = data[2]
+        self.time = int(data[3])
+
+class Car:
+    def __init__(self, data):
+        data = data.split(" ")
+        self.streetCount = int(data[0])
+        self.streets = data[1:]
 
 class OutputFile:
-    def __init__(self, numberOfTeams, teamPizzaList):
+    def __init__(self, intersectionSchedule):
         """Create an output file
 
         Args:
-            numberOfTeams (int): number of teams that pizzas will be delivered
-            teamPizzaList (list): list of the pizzas for all the teams
+            intersectionSchedule (list): schedule of intersections
         """
-        self.numberOfTeams = numberOfTeams
-        self.teamPizzaList = teamPizzaList
+        self.intersectionSchedule = intersectionSchedule
 
     def write(self, outputFile):
         """Write the output file to the disk
@@ -45,5 +51,17 @@ class OutputFile:
         Args:
             outputFile (string): filename of the output file
         """
-        output = [self.numberOfTeams] + self.teamPizzaList
+        
+        #print(self.intersectionSchedule)
+
+        # First line is the number of intersections that have a schedule
+        output = [len(self.intersectionSchedule)]
+
+        for intersection, streets in self.intersectionSchedule.items():
+            output.append(intersection)
+            output.append(len(streets))
+            for street in streets:
+                # Name of the Street, Schedule
+                output.append(street)
+
         write(outputFile, output)

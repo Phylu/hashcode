@@ -2,12 +2,15 @@
 
 import time
 
-from example_2021 import Example2021
-from example_2021.strategy import BaseStrategy
+#from example_2021 import Example2021
+#from example_2021.strategy import BaseStrategy
 
-CHALLENGE=Example2021
-STRATEGY=BaseStrategy
-INPUT_FILES= ['a_example', 'b_little_bit_of_everything.in', 'c_many_ingredients.in', 'd_many_pizzas.in', 'e_many_teams.in']
+from qualification_2021 import Qualification2021
+from qualification_2021 import BaseStrategy, FirstStreetStrategy, OneSecondStrategy, TenSecondsStrategy, MostUsedStreetStrategy, UsedStreetsStrategy, StreetRelationStrategy, ShortStreetRelationStrategy, StreetCarLengthRelationStrategy, StreetRelationReversedStrategy, StreetCarLengthRelationReversedStrategy
+
+CHALLENGE=Qualification2021
+STRATEGY=StreetCarLengthRelationReversedStrategy
+INPUT_FILES= ['a.txt', 'b.txt', 'c.txt', 'd.txt', 'e.txt', 'f.txt']
 
 if __name__ == '__main__':
 

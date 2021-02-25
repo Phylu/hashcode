@@ -1,0 +1,11 @@
+3
+0
+1
+rue-de-londres 20
+1
+2
+rue-d-amsterdam 10
+rue-d-athenes 10
+2
+1
+rue-de-moscou 6

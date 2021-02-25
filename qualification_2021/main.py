@@ -1,6 +1,6 @@
 from .models import InputFile, OutputFile
 
-class Example2021:
+class Qualification2021:
 
     @staticmethod
     def __str__():
@@ -9,7 +9,7 @@ class Example2021:
         Returns:
             string: class name
         """
-        return "example_2021"
+        return "qualification_2021"
 
     def __init__(self, strategy, inputFile):
         """Create a hashcode simulation
@@ -25,6 +25,7 @@ class Example2021:
     def run(self):
         """Run the hashcode simulation based on the current input file
         """
-        numberOfTeams, pizzas = self.strategy.run(self.inputFile)
-        self.outputFile = OutputFile(numberOfTeams, pizzas)
-        self.outputFile.write('/'.join([Example2021.__str__(), 'output', self.outputFileName]))
+
+        intersectionSchedule = self.strategy.run(self.inputFile)
+        self.outputFile = OutputFile(intersectionSchedule)
+        self.outputFile.write('/'.join([Qualification2021.__str__(), 'output', self.outputFileName]))
